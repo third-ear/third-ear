@@ -2,10 +2,12 @@ import React, { lazy, PureComponent, Suspense } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
-import MyLoading from '../../shared/components/Loading';
+import TyLoading from '../../shared/components/Loading';
+import './Home.css';
 
 
-const MyPosts = lazy(() => import('./Posts'));
+const TySubtitle = lazy(() => import('./Subtitle'));
+const TyNote = lazy(() => import('./Note'));
 
 
 class Home extends PureComponent {
@@ -13,19 +15,28 @@ class Home extends PureComponent {
     const {
       user,
 
-      getUser, updateName
+      getUser,
+      updateName,
     } = this.props;
 
     return (
-      <div>
-        <Suspense fallback={<MyLoading />}>
-          <MyPosts
-            user={user}
+      <div className="ty-home">
+        <div className="ty-subtitle-wrapper">
+          <Suspense fallback={<TyLoading />}>
+            <TySubtitle
+              user={user}
 
-            getUser={getUser}
-            updateName={updateName}
-          />
-        </Suspense>
+              getUser={getUser}
+              updateName={updateName}
+            />
+          </Suspense>
+        </div>
+
+        <div className="ty-note-wrapper">
+          <Suspense fallback={<TyLoading />}>
+            <TyNote />
+          </Suspense>
+        </div>
       </div>
     );
   }

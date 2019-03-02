@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Posts(props) {
+function Subtite(props) {
   const {
     user,
     getUser,
@@ -37,4 +37,4 @@ function Posts(props) {
   );
 }
 
-export default Posts;
+export default Subtite;

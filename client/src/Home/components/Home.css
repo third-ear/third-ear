@@ -1,0 +1,11 @@
+.ty-home {
+  display: flex;
+  height: 100%;
+}
+.ty-home .ty-subtitle-wrapper {
+  width: 50%;
+}
+.ty-home .ty-note-wrapper {
+  width: 50%;
+  border-left: 1px solid rgba(0, 0, 0, .1);
+}

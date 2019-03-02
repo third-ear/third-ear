@@ -1,0 +1,24 @@
+{
+  "name": "third-ear-server",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel index.js -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "@koa/cors": "2.2.3",
+    "graphql": "14.1.1",
+    "koa": "2.7.0",
+    "koa-graphql": "0.8.0",
+    "koa-router": "7.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "nodemon": "1.18.10"
+  }
+}

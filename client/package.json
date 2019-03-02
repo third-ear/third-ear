@@ -1,5 +1,6 @@
 {
   "name": "third-ear-client",
+  "license": "MIT",
   "dependencies": {
     "graphql": "14.1.1",
     "graphql-tag": "2.10.1",

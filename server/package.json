@@ -1,6 +1,7 @@
 {
   "name": "third-ear-server",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "build": "babel index.js -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",

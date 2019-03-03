@@ -4,6 +4,7 @@ import { Tooltip } from 'react-tippy';
 
 function Word(props) {
   const {
+    activeLanguageId,
     translation,
     word,
 
@@ -11,7 +12,10 @@ function Word(props) {
   } = props;
 
   function onEnterWord() {
-    translate({ text: word });
+    translate({
+      languageId: activeLanguageId,
+      text: word,
+    });
   }
 
   const { text } = translation || {};

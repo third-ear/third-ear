@@ -5,17 +5,20 @@ import Config from '../../config';
 import './Board.css';
 
 
+const TeTranslationSettings = lazy(() => import('./TranslationSettings'));
 const TeWords = lazy(() => import('./Words'));
 
 
 function Board(props) {
   const {
+    activeLanguageId,
     translation,
 
+    selectLanguage,
     translate,
   } = props;
 
-  const [allText, setAllText] = useState('');
+  const [allText, setAllText] = useState('hello');
   const [partText, setPartText] = useState('');
   const [isRecognizing, setIsRecognizing] = useState(false);
 
@@ -89,7 +92,7 @@ function Board(props) {
     socket.emit('binaryData', left16);
   }
 
-  async function onStartRecording() {
+  async function handleStartRecording() {
     await initRecording();
     setIsRecognizing(true);
   }
@@ -141,20 +144,20 @@ function Board(props) {
         count++;
       }
 
-      result[offsetResult] = Math.min(1, accum / count)*0x7FFF;
+      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
       offsetResult++;
       offsetBuffer = nextOffsetBuffer;
     }
     return result.buffer;
   }
 
-  function renderControls() {
+  function renderControl() {
     if (isRecognizing === false) {
       return (
         <button
-          className="button te-button is-link"
+          className="button is-primary te-button"
           type="button"
-          onClick={onStartRecording}
+          onClick={handleStartRecording}
         >
           Listen
         </button>
@@ -163,7 +166,7 @@ function Board(props) {
 
     return (
       <button
-        className="button te-button"
+        className="button is-danger te-button"
         type="button"
         onClick={handleStopRecording}
       >
@@ -177,11 +180,16 @@ function Board(props) {
   return (
     <div className="te-board">
       <div className="te-controls">
-        {renderControls()}
+        {renderControl()}
+
+        <TeTranslationSettings
+          selectLanguage={selectLanguage}
+        />
       </div>
 
       <div className="te-subtitle">
         <TeWords
+          activeLanguageId={activeLanguageId}
           translation={translation}
           words={words}
 

@@ -14,12 +14,16 @@ const Mutation = new GraphQLObjectType({
     translate: {
       type: TranslationType,
       args: {
+        languageId: { type: new GraphQLNonNull(GraphQLString) },
         text: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parentValue, args) {
-        const { text } = args;
+        const {
+          languageId,
+          text,
+        } = args;
 
-        return translate(text);
+        return translate(languageId, text);
       }
     },
   }

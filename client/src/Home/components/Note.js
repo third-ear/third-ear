@@ -31,7 +31,7 @@ function Note(props) {
     return (
       <Fragment>
         <button
-          className='button te-button is-link'
+          className='button is-primary te-button'
           onClick={handleCreateNotes}
         >
           Create Note

@@ -1,6 +1,6 @@
 export const translateMutation = `
-  mutation Translate($text: String!) {
-    translate(text: $text) {
+  mutation Translate($languageId: String!, $text: String!) {
+    translate(languageId: $languageId, text: $text) {
       text
     }
   }

@@ -9,6 +9,7 @@ const TeWord = lazy(() => import('./Word'));
 
 function Words(props) {
   const {
+    activeLanguageId,
     translation,
     words,
 
@@ -19,19 +20,10 @@ function Words(props) {
     return words.map(word => {
       const key = `key-${uuidv4()}`;
 
-
-      // return (
-      //   <TeWord
-      //     key={key}
-      //     word={word}
-      //
-      //     translate={translate}
-      //   />
-      // );
-
       return (
         <TeWord
           key={key}
+          activeLanguageId={activeLanguageId}
           translation={translation}
           word={word}
 

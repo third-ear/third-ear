@@ -98,12 +98,6 @@ function Navbar(props) {
       </div>
     </nav>
   );
-
-  return (
-    <div>
-      <img src={photoUrl} className="te-avatar" alt="avatar" />
-    </div>
-  );
 }
 
 export default Navbar;

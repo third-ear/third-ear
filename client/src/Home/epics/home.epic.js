@@ -15,7 +15,8 @@ export const translateEpic = (action$) => action$.pipe(
     {
       query: queries.translateMutation,
       variables: {
-        text: action.payload.text
+        languageId: action.payload.languageId,
+        text: action.payload.text,
       },
     },
     { 'Content-Type': 'application/json' }

@@ -29,8 +29,10 @@ class Home extends PureComponent {
 
   render() {
     const {
+      activeLanguageId,
       translation,
 
+      selectLanguage,
       translate,
     } = this.props;
 
@@ -53,8 +55,10 @@ class Home extends PureComponent {
           <div className="te-board-wrapper">
             <Suspense fallback={<TeLoading />}>
               <TeBoard
+                activeLanguageId={activeLanguageId}
                 translation={translation}
 
+                selectLanguage={selectLanguage}
                 translate={translate}
               />
             </Suspense>
@@ -75,7 +79,9 @@ class Home extends PureComponent {
 
 
 export default connect((state) => ({
+  activeLanguageId: state.activeLanguageId,
   translation: state.translation,
 }), {
+  selectLanguage: actions.selectLanguage,
   translate: actions.translate,
 })(Home);

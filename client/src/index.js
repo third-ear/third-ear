@@ -44,18 +44,21 @@ export const store = createStore(
 
 epicMiddleware.run(rootEpic);
 
+setTimeout(
+  () => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={TyHome} />
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={TyHome} />
-
-        <Redirect to="/" />
-      </Switch>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
+            <Redirect to="/" />
+          </Switch>
+        </BrowserRouter>
+      </Provider>,
+      document.getElementById('root')
+    );
+  },
+  500,
 );
-
 registerServiceWorker();

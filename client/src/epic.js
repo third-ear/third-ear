@@ -2,10 +2,12 @@ import { combineEpics } from 'redux-observable';
 
 import {
   getUserEpic,
-  updateNameEpic
+  translateEpic,
+  updateNameEpic,
 } from './Home/epics/';
 
 export default combineEpics(
   getUserEpic,
-  updateNameEpic
+  translateEpic,
+  updateNameEpic,
 );

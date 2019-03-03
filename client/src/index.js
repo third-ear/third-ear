@@ -9,6 +9,7 @@ import { createLogger } from 'redux-logger';
 import gapi from 'gapi-client';
 import { Config } from './config';
 import 'bulma/css/bulma.css';
+import 'react-tippy/dist/tippy.css';
 import 'normalize.css';
 
 import rootReducer from './reducer';

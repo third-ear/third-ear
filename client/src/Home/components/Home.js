@@ -6,28 +6,28 @@ import TyLoading from '../../shared/components/Loading';
 import './Home.css';
 
 
-const TySubtitle = lazy(() => import('./Subtitle'));
+const TyBoard = lazy(() => import('./Board'));
 const TyNote = lazy(() => import('./Note'));
 
 
 class Home extends PureComponent {
   render() {
     const {
+      translation,
       user,
 
-      getUser,
-      updateName,
+      translate,
     } = this.props;
 
     return (
       <div className="ty-home">
-        <div className="ty-subtitle-wrapper">
+        <div className="ty-board-wrapper">
           <Suspense fallback={<TyLoading />}>
-            <TySubtitle
+            <TyBoard
+              translation={translation}
               user={user}
 
-              getUser={getUser}
-              updateName={updateName}
+              translate={translate}
             />
           </Suspense>
         </div>
@@ -44,8 +44,8 @@ class Home extends PureComponent {
 
 
 export default connect((state) => ({
-  user: state.user
+  translation: state.translation,
+  user: state.user,
 }), {
-  getUser: actions.getUser,
-  updateName: actions.updateName,
+  translate: actions.translate,
 })(Home);

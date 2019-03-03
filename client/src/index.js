@@ -6,8 +6,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
-import gapi from 'gapi-client';
-import Config from './config';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import 'bulma/css/bulma.css';
 import 'react-tippy/dist/tippy.css';
 import 'normalize.css';
@@ -18,6 +19,7 @@ import './index.css';
 
 import TyHome from './Home/components/Home';
 import registerServiceWorker from './registerServiceWorker';
+
 
 const epicMiddleware = createEpicMiddleware();
 
@@ -33,8 +35,15 @@ const logger = createLogger({
 });
 middlewares = [...middlewares, logger];
 
+const config = {
+  key: 'state',
+  storage,
+};
+
+const reducer = persistReducer(config, rootReducer);
+
 export const store = createStore(
-  rootReducer,
+  reducer,
 
   // debug
   composeWithDevTools(
@@ -44,34 +53,31 @@ export const store = createStore(
 
 epicMiddleware.run(rootEpic);
 
-// Initialize Google API
-function initClient() {
-  gapi.client
-    .init({
-      clientId: Config.clientId,
-      apiKey: Config.apiKey,
-      scope: [
-        'https://www.googleapis.com/auth/documents',
-      ].join(' ')
-    })
-    .then(() => {
-      console.log('Google API initialization succeed');
-    })
-    .catch(err => console.log('Google API initialization failed', err));
 
-}
+const persistor = persistStore(store);
 
-gapi.load('client:auth2', initClient);
+
+
+
+const onBeforeLift = () => {
+
+};
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={TyHome} />
+    <PersistGate
+      loading={null}
+      onBeforeLift={onBeforeLift}
+      persistor={persistor}
+    >
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={TyHome} />
 
-        <Redirect to="/" />
-      </Switch>
-    </BrowserRouter>
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

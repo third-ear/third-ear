@@ -1,8 +1,8 @@
 .te-board {
-  height: 100%;
+  height: 100%;  background-color: #373737;
+
 }
 .te-board .te-controls {
-  margin: .5rem;
   display: flex;
 }
 .te-board .te-controls .te-button {
@@ -10,7 +10,6 @@
 }
 .te-board .te-subtitle {
   overflow-y: auto;
-  background-color: #373737;
   height: 100%;
   color: #fff;
   font-size: 1.5rem;

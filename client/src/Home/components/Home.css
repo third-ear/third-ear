@@ -1,5 +1,10 @@
 .te-home {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.te-home .te-body {
+  display: flex;
   height: 100%;
 }
 .te-home .te-board-wrapper {
@@ -7,5 +12,4 @@
 }
 .te-home .te-note-wrapper {
   width: 50%;
-  border-left: 1px solid rgba(0, 0, 0, .1);
 }

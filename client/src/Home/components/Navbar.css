@@ -1,0 +1,23 @@
+.te-navbar {
+
+}
+
+.te-navbar .te-logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.te-navbar .te-avatar {
+  border-radius: .5rem;
+}
+
+.te-navbar .te-name {
+  cursor: default;
+  font-weight: 700;
+}
+
+.te-navbar .te-navbar-burger {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}

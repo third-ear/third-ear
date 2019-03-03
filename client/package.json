@@ -2,9 +2,12 @@
   "name": "third-ear-client",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "bulma": "0.7.4",
+    "gapi-client": "0.0.3",
     "graphql": "14.1.1",
     "graphql-tag": "2.10.1",
+    "moment": "^2.24.0",
     "normalize.css": "8.0.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",

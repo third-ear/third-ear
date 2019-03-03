@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
 import { Config } from '../../config';
+import './Board.css';
 
 
-function Subtitle() {
+function Board() {
   const [partText, setPartText] = useState('');
   const [allText, setAllText] = useState('');
   const socket = io(Config.socketUrl);
@@ -140,15 +141,17 @@ function Subtitle() {
   }
 
   return (
-    <div>
-      <div className="wrapper">
-        <button className="button" type="button" onClick={onStartRecording}>Start</button>
-        <button className="button" type="button" onClick={handleStopRecording}>Stop</button>
+    <div className="te-board">
+      <div className="te-controls">
+        <button className="button te-button is-link" type="button" onClick={onStartRecording}>Listen</button>
+        <button className="button te-button" type="button" onClick={handleStopRecording}>Stop</button>
       </div>
 
-      {allText} {partText}
+      <div className="te-subtitle">
+        {allText} {partText}
+      </div>
     </div>
   );
 }
 
-export default Subtitle;
+export default Board;

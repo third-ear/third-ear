@@ -1,46 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import './Note.css';
+import React, { useState } from 'react';
 import gapi from 'gapi-client';
+
+import './Note.css';
 
 
 function Note() {
   const [ src, setSrc ] = useState('');
-  const [ signedIn, setSignedIn ] = useState('');
-
-  useEffect(() => {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-  });
 
   async function handleCreateNotes() {
-    const initiallizeDoc = await gapi.client.request({
+    const doc = await gapi.client.request({
       path: 'https://docs.googleapis.com/v1/documents',
       method: 'POST',
     });
 
-    const doc_id = initiallizeDoc.result.documentId;
-    setSrc(`https://docs.google.com/document/d/${doc_id}`);
+    const documentId = doc.result.documentId;
+    setSrc(`https://docs.google.com/document/d/${documentId}`);
   }
 
-  function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-      setSignedIn(true);
-    } else {
-      console.log('Did not sign in successfully...')
-    }
+  function handleAuthClick() {
+    gapi.auth2.getAuthInstance().signIn();
   }
 
-  function handleAuthClick(event) {
-    window.gapi.auth2.getAuthInstance().signIn();
-  }
-
-  function handleSignoutClick(event) {
+  function handleSignOutClick() {
     gapi.auth2.getAuthInstance().signOut();
   }
 
   return (
     <div className="te-overview">
-      <div className='buttons'> 
+      <div className='buttons'>
         <button className='button'
           onClick={handleCreateNotes}
           >
@@ -51,7 +38,7 @@ function Note() {
           Authorize
         </button>
         <button className='button'
-          onClick={handleSignoutClick}>
+          onClick={handleSignOutClick}>
           Sign Out
         </button>
       </div>

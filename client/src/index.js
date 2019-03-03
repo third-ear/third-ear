@@ -7,7 +7,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
 import gapi from 'gapi-client';
-import { Config } from './config';
+import Config from './config';
 import 'bulma/css/bulma.css';
 import 'react-tippy/dist/tippy.css';
 import 'normalize.css';
@@ -45,23 +45,23 @@ export const store = createStore(
 epicMiddleware.run(rootEpic);
 
 // Initialize Google API
-//On load, called to load the auth2 library and API client library.
-gapi.load('client:auth2', initClient);
-
-// Initialize the API client library
 function initClient() {
-  gapi.client.init({
-    clientId: Config.clientId,
-    apiKey: Config.apiKey,
-    scope: [
-      'https://www.googleapis.com/auth/documents'
-    ].join(' ')
-  }).catch(err => console.log(`Your app is having problem initializing google API, here is the err`, err))
-  .then(function () {
-    // do stuff with loaded APIs
-    console.log('Google API initialized in index.js');
-  });
+  gapi.client
+    .init({
+      clientId: Config.clientId,
+      apiKey: Config.apiKey,
+      scope: [
+        'https://www.googleapis.com/auth/documents',
+      ].join(' ')
+    })
+    .then(() => {
+      console.log('Google API initialization succeed');
+    })
+    .catch(err => console.log('Google API initialization failed', err));
+
 }
+
+gapi.load('client:auth2', initClient);
 
 ReactDOM.render(
   <Provider store={store}>

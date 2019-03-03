@@ -1,7 +1,7 @@
 import React, { lazy, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-import { Config } from '../../config';
+import Config from '../../config';
 import './Board.css';
 
 

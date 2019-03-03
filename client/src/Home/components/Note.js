@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import gapi from 'gapi-client';
+// import gapi from 'gapi-client';
 
 import './Note.css';
+
+
+const gapi = window.gapi;
 
 
 function Note(props) {

@@ -1,6 +1,6 @@
 import React, { lazy, PureComponent, Suspense } from 'react';
 import { connect } from 'react-redux';
-import gapi from 'gapi-client';
+// import gapi from 'gapi-client';
 
 import * as actions from '../actions';
 import TeLoading from '../../shared/components/Loading';
@@ -10,6 +10,8 @@ import './Home.css';
 const TeBoard = lazy(() => import('./Board'));
 const TeNavbar = lazy(() => import('./Navbar'));
 const TeNote = lazy(() => import('./Note'));
+
+const gapi = window.gapi;
 
 
 class Home extends PureComponent {

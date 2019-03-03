@@ -18,6 +18,7 @@ function Board(props) {
     translate,
   } = props;
 
+  // const [allText, setAllText] = useState('OK. The thing I want you to take away from this, then, is to think of this as, this is, if you like, a recipe. And that\'s really what a program is. It\'s a sequence of instructions. Now, one of things I left hanging is, I said, OK, you build it out of primitives. So one of the questions is, well, what are the right primitives to use? And one of the things that was useful here is, that we actually know that the set of primitives that you want to use is very straight-forward.');
   const [allText, setAllText] = useState('');
   const [partText, setPartText] = useState('');
   const [isRecognizing, setIsRecognizing] = useState(false);

@@ -16,20 +16,14 @@ class TranslationSettings extends PureComponent {
     selectLanguage({ languageId: selectedActiveLanguageId });
   };
 
-
-  renderSelectField = ({ options, change }) => {
-    const defaultValue = {
-      label: Languages[0].name,
-      value: Languages[0].id,
-    };
-
+  renderSelectField = ({ options, placeholder, change }) => {
     return (
       <div>
         <ReactSelect
           className="ol-select"
-          defaultValue={defaultValue}
           isClearable={false}
           options={options}
+          placeholder={placeholder}
 
           onChange={change}
         />
@@ -55,6 +49,7 @@ class TranslationSettings extends PureComponent {
         <Field
           component={this.renderSelectField}
           options={options}
+          placeholder="Translate to..."
 
           change={this.onSelectLanguage}
         />

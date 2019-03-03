@@ -18,7 +18,7 @@ function Board(props) {
     translate,
   } = props;
 
-  const [allText, setAllText] = useState('hello');
+  const [allText, setAllText] = useState('');
   const [partText, setPartText] = useState('');
   const [isRecognizing, setIsRecognizing] = useState(false);
 

@@ -20,6 +20,14 @@ function Word(props) {
 
   const { text } = translation || {};
 
+  if (activeLanguageId == null) {
+    return (
+      <div className="te-word" >
+        {word}
+      </div>
+    );
+  }
+
   return (
     <Tooltip
       title={text}
@@ -31,6 +39,7 @@ function Word(props) {
     >
       <div
         className="te-word"
+
         onMouseEnter={onEnterWord}
       >
         {word}

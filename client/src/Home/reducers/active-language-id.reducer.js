@@ -1,7 +1,7 @@
 import * as types from '../types';
 
 
-export default function (state = 'zh', action) {
+export default function (state = null, action) {
   switch (action.type) {
     case types.SELECT_LANGUAGE: {
       const { languageId } = action.payload;

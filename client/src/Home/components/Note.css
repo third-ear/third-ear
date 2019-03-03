@@ -1,7 +1,14 @@
-.te-overview {
+.te-note-container {
   height: 100%;
 }
 .te-embedded-note {
   height: 100%;
   width: 100%;
+}
+.te-note-container .te-controls {
+  margin: .5rem;
+}
+
+.te-note-container .te-controls .te-button {
+  margin: .5rem;
 }

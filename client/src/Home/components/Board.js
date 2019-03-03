@@ -17,6 +17,7 @@ function Board(props) {
 
   const [allText, setAllText] = useState('');
   const [partText, setPartText] = useState('');
+  const [isRecognizing, setIsRecognizing] = useState(false);
 
   const socket = io(Config.socketUrl);
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -74,7 +75,6 @@ function Board(props) {
         video: false
       });
 
-
     input = context.createMediaStreamSource(stream);
     input.connect(processor);
 
@@ -89,16 +89,12 @@ function Board(props) {
     socket.emit('binaryData', left16);
   }
 
-  function onStartRecording() {
-    // startButton.disabled = true;
-    // endButton.disabled = false;
-    initRecording();
+  async function onStartRecording() {
+    await initRecording();
+    setIsRecognizing(true);
   }
 
   function handleStopRecording() {
-    // waited for FinalWord
-    // startButton.disabled = false;
-    // endButton.disabled = true;
     streamStreaming = false;
     socket.emit('endGoogleCloudStream', '');
 
@@ -112,6 +108,8 @@ function Board(props) {
       processor = null;
       context = null;
     });
+
+    setIsRecognizing(false);
   }
 
 
@@ -150,13 +148,36 @@ function Board(props) {
     return result.buffer;
   }
 
+  function renderControls() {
+    if (isRecognizing === false) {
+      return (
+        <button
+          className="button te-button is-link"
+          type="button"
+          onClick={onStartRecording}
+        >
+          Listen
+        </button>
+      );
+    }
+
+    return (
+      <button
+        className="button te-button"
+        type="button"
+        onClick={handleStopRecording}
+      >
+        Stop
+      </button>
+    );
+  }
+
   const words = allText.split(' ');
 
   return (
     <div className="te-board">
       <div className="te-controls">
-        <button className="button te-button is-link" type="button" onClick={onStartRecording}>Listen</button>
-        <button className="button te-button" type="button" onClick={handleStopRecording}>Stop</button>
+        {renderControls()}
       </div>
 
       <div className="te-subtitle">

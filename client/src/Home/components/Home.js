@@ -14,7 +14,6 @@ class Home extends PureComponent {
   render() {
     const {
       translation,
-      user,
 
       translate,
     } = this.props;
@@ -25,7 +24,6 @@ class Home extends PureComponent {
           <Suspense fallback={<TeLoading />}>
             <TeBoard
               translation={translation}
-              user={user}
 
               translate={translate}
             />
@@ -45,7 +43,6 @@ class Home extends PureComponent {
 
 export default connect((state) => ({
   translation: state.translation,
-  user: state.user,
 }), {
   translate: actions.translate,
 })(Home);

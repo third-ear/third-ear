@@ -1,6 +1,4 @@
 .te-board {
-  /*display: flex;*/
-  /*flex-direction: column;*/
   height: 100%;
 }
 .te-board .te-controls {
@@ -11,8 +9,6 @@
   margin: .5rem;
 }
 .te-board .te-subtitle {
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
   overflow-y: auto;
   background-color: #373737;
   height: 100%;

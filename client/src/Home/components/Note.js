@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import gapi from 'gapi-client';
 
 import './Note.css';
 
 
 function Note() {
-  const [ src, setSrc ] = useState('');
+  const [url, setUrl] = useState('');
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   async function handleCreateNotes() {
     const doc = await gapi.client.request({
@@ -14,38 +15,60 @@ function Note() {
     });
 
     const documentId = doc.result.documentId;
-    setSrc(`https://docs.google.com/document/d/${documentId}`);
+    setUrl(`https://docs.google.com/document/d/${documentId}`);
   }
 
-  function handleAuthClick() {
-    gapi.auth2.getAuthInstance().signIn();
+  async function handleSignIn() {
+    await gapi.auth2.getAuthInstance().signIn();
+    setIsSignedIn(true);
   }
 
-  function handleSignOutClick() {
-    gapi.auth2.getAuthInstance().signOut();
+  async function handleSignOut() {
+    await gapi.auth2.getAuthInstance().signOut();
+    setIsSignedIn(false);
+  }
+
+  function renderControls() {
+    if (isSignedIn === false) {
+      return (
+        <button
+          className='button te-button is-link'
+          onClick={handleSignIn}
+        >
+          Sign In
+        </button>
+      );
+    }
+
+    return (
+      <Fragment>
+        <button
+          className='button te-button is-link'
+          onClick={handleCreateNotes}
+        >
+          Create Note
+        </button>
+
+        <button
+          className='button te-button'
+          onClick={handleSignOut}
+        >
+          Sign Out
+        </button>
+      </Fragment>
+    );
   }
 
   return (
-    <div className="te-overview">
-      <div className='buttons'>
-        <button className='button'
-          onClick={handleCreateNotes}
-          >
-          Create Note
-        </button>
-        <button className='button'
-          onClick={handleAuthClick}>
-          Authorize
-        </button>
-        <button className='button'
-          onClick={handleSignOutClick}>
-          Sign Out
-        </button>
+    <div className="te-note-container">
+      <div className='te-controls'>
+        {renderControls()}
+
       </div>
-      <iframe className="te-embedded-note" src={src} />
+
+      <iframe className="te-embedded-note" src={url} />
     </div>
   );
 }
-
 
 export default Note;

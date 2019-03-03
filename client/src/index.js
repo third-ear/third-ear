@@ -7,6 +7,7 @@ import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
 import 'bulma/css/bulma.css';
+import 'react-tippy/dist/tippy.css';
 import 'normalize.css';
 
 import rootReducer from './reducer';

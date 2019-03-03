@@ -1,0 +1,10 @@
+.te-words {
+  display: flex;
+  flex-wrap: wrap;
+}
+.te-word-wrapper {
+  /*display: flex;*/
+}
+.te-word {
+  margin-right: .5rem;
+}

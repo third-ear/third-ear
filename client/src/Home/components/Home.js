@@ -13,10 +13,10 @@ const TyNote = lazy(() => import('./Note'));
 class Home extends PureComponent {
   render() {
     const {
+      translation,
       user,
 
-      getUser,
-      updateName,
+      translate,
     } = this.props;
 
     return (
@@ -24,10 +24,10 @@ class Home extends PureComponent {
         <div className="ty-board-wrapper">
           <Suspense fallback={<TyLoading />}>
             <TyBoard
+              translation={translation}
               user={user}
 
-              getUser={getUser}
-              updateName={updateName}
+              translate={translate}
             />
           </Suspense>
         </div>
@@ -44,8 +44,8 @@ class Home extends PureComponent {
 
 
 export default connect((state) => ({
-  user: state.user
+  translation: state.translation,
+  user: state.user,
 }), {
-  getUser: actions.getUser,
-  updateName: actions.updateName,
+  translate: actions.translate,
 })(Home);

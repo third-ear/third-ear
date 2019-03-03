@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import userReducer from './Home/reducers/user.reducer';
+import translationReducer from './Home/reducers/translation.reducer';
 
 
 const appReducer = combineReducers({
-  user: userReducer
+  translation: translationReducer
 });
 
 const rootReducer = (state, action) => {

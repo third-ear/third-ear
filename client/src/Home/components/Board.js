@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
 import { Config } from '../../config';
 import './Board.css';
 
 
-function Board() {
-  const [partText, setPartText] = useState('');
+const TeWords = lazy(() => import('./Words'));
+
+
+function Board(props) {
+  const {
+    translation,
+
+    translate,
+  } = props;
+
   const [allText, setAllText] = useState('');
+  const [partText, setPartText] = useState('');
+
   const socket = io(Config.socketUrl);
   const AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -114,9 +124,9 @@ function Board() {
       return buffer;
     }
 
-    if (outSampleRate > sampleRate) {
-      throw 'downsampling rate show be smaller than original sample rate';
-    }
+    // if (outSampleRate > sampleRate) {
+    //   throw 'downsampling rate show be smaller than original sample rate';
+    // }
 
     const sampleRateRatio = sampleRate / outSampleRate;
     const newLength = Math.round(buffer.length / sampleRateRatio);
@@ -140,6 +150,8 @@ function Board() {
     return result.buffer;
   }
 
+  const words = allText.split(' ');
+
   return (
     <div className="te-board">
       <div className="te-controls">
@@ -148,7 +160,15 @@ function Board() {
       </div>
 
       <div className="te-subtitle">
-        {allText} {partText}
+        <TeWords
+          translation={translation}
+          words={words}
+
+          translate={translate}
+        />
+        <div>
+          {partText}
+        </div>
       </div>
     </div>
   );

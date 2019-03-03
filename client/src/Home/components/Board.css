@@ -2,10 +2,11 @@
   height: 100%;  background-color: #373737;
 
 }
-.te-board .te-controls {
+.te-board .te-control {
   display: flex;
+  padding: .5rem;
 }
-.te-board .te-controls .te-button {
+.te-board .te-control .te-button {
   margin: .5rem;
 }
 .te-board .te-subtitle {

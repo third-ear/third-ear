@@ -179,7 +179,7 @@ function Board(props) {
 
   return (
     <div className="te-board">
-      <div className="te-controls">
+      <div className="te-control">
         {renderControl()}
 
         <TeTranslationSettings

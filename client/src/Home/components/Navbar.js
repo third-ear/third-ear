@@ -69,7 +69,12 @@ function Navbar(props) {
       .getImageUrl()
     : '';
 
-  const name = 'Hongbo';
+  const name = isSignedIn
+    ? googleAuth.currentUser
+      .get()
+      .getBasicProfile()
+      .getName()
+    : '';
 
   return (
     <nav className="navbar is-light te-navbar" role="navigation" aria-label="main navigation">

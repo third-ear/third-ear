@@ -1,23 +1,27 @@
-import { GraphQLObjectType, GraphQLString } from 'graphql';
+import {
+  GraphQLNonNull,
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
 
-import UserType from './types/user.type';
+import TranslationType from './types/translation.type';
+import { translate } from './lib/translate';
 
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    updateName: {
-      type: UserType,
+    translate: {
+      type: TranslationType,
       args: {
-        id: { type: GraphQLString },
-        name: { type: GraphQLString }
+        text: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parentValue, args) {
-        const { id, name } = args;
+        const { text } = args;
 
-        return { id: '0', name: 'Rose' };
+        return translate(text);
       }
-    }
+    },
   }
 });
 

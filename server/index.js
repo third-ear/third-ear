@@ -1,5 +1,5 @@
 import Koa from 'koa';
-// import cors from '@koa/cors';
+import cors from '@koa/cors';
 import Router from 'koa-router';
 import graphqlHTTP from 'koa-graphql';
 import { GraphQLSchema } from 'graphql';
@@ -32,15 +32,13 @@ const request = {
   interimResults: true
 };
 
-
-
 const schema = new GraphQLSchema({
   query: Query,
   mutation: Mutation,
 });
 
 const app = new Koa();
-// app.use(cors());
+app.use(cors());
 
 const httpServer = http.createServer(app.callback());
 const ioServer = io(httpServer);

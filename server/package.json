@@ -11,11 +11,14 @@
     "type": "git"
   },
   "dependencies": {
+    "@google-cloud/speech": "2.3.0",
     "@koa/cors": "2.2.3",
+    "dotenv": "6.2.0",
     "graphql": "14.1.1",
     "koa": "2.7.0",
     "koa-graphql": "0.8.0",
-    "koa-router": "7.4.0"
+    "koa-router": "7.4.0",
+    "socket.io": "2.2.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

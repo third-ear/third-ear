@@ -6,7 +6,7 @@ import TyLoading from '../../shared/components/Loading';
 import './Home.css';
 
 
-const TySubtitle = lazy(() => import('./Subtitle'));
+const TyBoard = lazy(() => import('./Board'));
 const TyNote = lazy(() => import('./Note'));
 
 
@@ -21,9 +21,9 @@ class Home extends PureComponent {
 
     return (
       <div className="ty-home">
-        <div className="ty-subtitle-wrapper">
+        <div className="ty-board-wrapper">
           <Suspense fallback={<TyLoading />}>
-            <TySubtitle
+            <TyBoard
               user={user}
 
               getUser={getUser}

@@ -1,12 +1,8 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 
-class Loading extends PureComponent {
-  render() {
-    return (
-      <div />
-    );
-  }
+function Loading() {
+  return <div />;
 }
 
 export default Loading;

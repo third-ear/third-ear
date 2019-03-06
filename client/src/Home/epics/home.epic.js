@@ -1,4 +1,4 @@
-import { catchError, map, mergeMap,tap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable';
 
@@ -21,7 +21,6 @@ export const translateEpic = (action$) => action$.pipe(
     },
     { 'Content-Type': 'application/json' }
   ).pipe(
-    tap(res => console.log('res', res)),
     map(res => actions.translateSucceed({
       translation: res.response.data.translate
     })),

@@ -20,7 +20,7 @@ class TranslationSettings extends PureComponent {
     return (
       <div>
         <ReactSelect
-          className="ol-select"
+          className="te-select"
           isClearable={false}
           options={options}
           placeholder={placeholder}
@@ -45,7 +45,7 @@ class TranslationSettings extends PureComponent {
     });
 
     return (
-      <form className="ol-translation-form">
+      <form className="te-translation-form">
         <Field
           component={this.renderSelectField}
           options={options}
